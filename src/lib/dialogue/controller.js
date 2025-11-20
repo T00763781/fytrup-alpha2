@@ -1,6 +1,7 @@
 import { writable } from "svelte/store";
 import { startPOIEngine } from "$lib/poi/engine.js";
 import registry from "$lib/poi/registry.json";
+import { base } from "$app/paths";
 
 export const dialogue = writable({
   visible: false,
@@ -13,19 +14,23 @@ export const dialogue = writable({
 
 let triggered = new Set();
 
-// Initializes POI → Dialogue connections
+// Initialize POI → Dialogue routing
 export function initializeDialogueSystem() {
   startPOIEngine((poi) => {
     if (!poi || triggered.has(poi.id)) return;
 
     triggered.add(poi.id);
 
+    // Build base-aware portrait path
+    const portraitPath =
+      poi.portrait
+        ? `${base}${poi.portrait}`
+        : `${base}/characters/wolfie_neutral.png`;
+
     dialogue.set({
       visible: true,
       character: poi.character ?? "Wolfie",
-      portrait:
-        poi.portrait ??
-        "/fytrup-alpha2/characters/wolfie_neutral.png",
+      portrait: portraitPath,
       title: poi.name,
       text: poi.intro,
       poiId: poi.id

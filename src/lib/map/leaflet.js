@@ -1,7 +1,7 @@
 // src/lib/map/leaflet.js
-// This file must be client-only:
 import { browser } from '$app/environment';
-import { getVisited } from "$lib/state/storage.js";   // NEW: read state
+import { base } from '$app/paths';
+import { getVisited } from "$lib/state/storage.js";
 
 let leafletPromise = null;
 
@@ -23,38 +23,48 @@ export async function initMap(container) {
   if (!browser) return null;
   if (!container) return null;
 
-  // Prevent re-initialization
+  // Prevent double init
   if (container._leaflet_map) return container._leaflet_map;
 
   const L = await loadLeaflet();
   if (!L) return null;
 
   // -----------------------------------------
-  //  NEW — THREE-STATE ICON SET
+  //  FIX LEAFLET'S INTERNAL BROKEN DEFAULT ICONS
+  // -----------------------------------------
+  L.Icon.Default.mergeOptions({
+    // Disabled defaults to stop root-path lookups
+    iconRetinaUrl: `${base}/icons/marker_unseen.png`,
+    iconUrl: `${base}/icons/marker_unseen.png`,
+    shadowUrl: `${base}/icons/marker_shadow.png`
+  });
+
+  // -----------------------------------------
+  //  THREE-STATE MARKERS — BASE-AWARE
   // -----------------------------------------
   const unseenIcon = L.icon({
-    iconUrl: '/icons/marker_unseen.png',
+    iconUrl: `${base}/icons/marker_unseen.png`,
     iconSize: [44, 44],
     iconAnchor: [22, 44],
     popupAnchor: [0, -44]
   });
 
   const visitedIcon = L.icon({
-    iconUrl: '/icons/marker_visited.png',
+    iconUrl: `${base}/icons/marker_visited.png`,
     iconSize: [44, 44],
     iconAnchor: [22, 44],
     popupAnchor: [0, -44]
   });
 
   const completedIcon = L.icon({
-    iconUrl: '/icons/marker_completed.png',
+    iconUrl: `${base}/icons/marker_completed.png`,
     iconSize: [50, 50],
     iconAnchor: [25, 50],
     popupAnchor: [0, -50]
   });
 
   // -----------------------------------------
-  //  MAP INITIALIZATION
+  //  MAP SETUP
   // -----------------------------------------
   const defaultCenter = [50.6718, -120.3645];
 
@@ -66,32 +76,28 @@ export async function initMap(container) {
 
   container._leaflet_map = map;
 
-  // FOIPPA-safe OSM tiles
+  // FOIPPA-safe tiles
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap contributors",
     maxZoom: 19
   }).addTo(map);
 
-  // Load POI registry
+  // -----------------------------------------
+  //  LOAD REGISTRY + VISITED STATE
+  // -----------------------------------------
   const registry = (await import('$lib/poi/registry.json')).default;
-
-  // Load visited state (Set or Array accepted)
   const visitedState = new Set(getVisited());
 
   // -----------------------------------------
-  //  ADD POI MARKERS USING STATE LOGIC
+  //  ADD MARKERS
   // -----------------------------------------
   registry.forEach((poi) => {
-    
-    // choose default icon
     let icon = unseenIcon;
 
-    // visited?
     if (visitedState.has(poi.id)) {
       icon = visitedIcon;
     }
 
-    // completed? (if you later add poi.completed = true)
     if (poi.completed) {
       icon = completedIcon;
     }

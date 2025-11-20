@@ -1,8 +1,15 @@
 <script>
   import { onMount, tick } from "svelte";
+  import { base } from "$app/paths";
+
+  // base-aware imports
   import { initMap } from "$lib/map/leaflet.js";
   import DialoguePanel from "$lib/dialogue/DialoguePanel.svelte";
-  import { dialogue, closeDialogue, initializeDialogueSystem } from "$lib/dialogue/controller.js";
+  import {
+    dialogue,
+    closeDialogue,
+    initializeDialogueSystem
+  } from "$lib/dialogue/controller.js";
 
   let dlg;
   dialogue.subscribe(v => (dlg = v));
@@ -12,7 +19,11 @@
 
   onMount(async () => {
     await tick();
+
+    // base is now respected inside initMap()
     mapInstance = initMap(mapContainer);
+
+    // dialogue controller now loads portraits with base prefix
     initializeDialogueSystem();
   });
 </script>

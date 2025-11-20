@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { page } from "$app/stores";
+  import { base } from "$app/paths";
 
   let showSplash = true;
   $: current = $page.url.pathname;
@@ -162,8 +163,11 @@
       <span class="t-path">Path</span>
     </div>
 
-    <a href="/profile" class="profile-btn">
-      <img src={current === '/profile' ? '/icons/Profile_selected.png' : '/icons/Profile.png'} alt="Profile" />
+    <a href="{base}/profile" class="profile-btn">
+      <img 
+        src="{base}{current === '/profile' ? '/icons/Profile_selected.png' : '/icons/Profile.png'}" 
+        alt="Profile" 
+      />
     </a>
   </header>
 
@@ -173,12 +177,23 @@
     </div>
 
     <div class="wolfie-wrapper">
-      <img src="/characters/wolfie_neutral.png" class="wolfie-img" alt="Wolfie" />
+      <img src="{base}/characters/wolfie_neutral.png" class="wolfie-img" alt="Wolfie" />
     </div>
 
     <div class="subnav">
-      <a href="/" class="nav-btn"><img src={current === '/' ? '/icons/Map_Selected.png' : '/icons/Map.png'} alt="Map" /></a>
-      <a href="/camera" class="nav-btn"><img src={current === '/camera' ? '/icons/Camera_selected.png' : '/icons/Camera.png'} alt="Camera" /></a>
+      <a href="{base}/" class="nav-btn">
+        <img 
+          src="{base}{current === '/' ? '/icons/Map_Selected.png' : '/icons/Map.png'}" 
+          alt="Map" 
+        />
+      </a>
+
+      <a href="{base}/camera" class="nav-btn">
+        <img 
+          src="{base}{current === '/camera' ? '/icons/Camera_selected.png' : '/icons/Camera.png'}" 
+          alt="Camera" 
+        />
+      </a>
     </div>
 
     <div class="text-panel">

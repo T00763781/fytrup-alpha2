@@ -2,7 +2,8 @@
   ".svelte-kit/generated/server/internal.js": {
     "file": "internal.js",
     "imports": [
-      "_internal.js"
+      "_internal.js",
+      "_paths.js"
     ],
     "isEntry": true,
     "src": ".svelte-kit/generated/server/internal.js"
@@ -16,8 +17,12 @@
   "_internal.js": {
     "file": "chunks/internal.js",
     "imports": [
-      "_ssr.js"
+      "_ssr.js",
+      "_paths.js"
     ]
+  },
+  "_paths.js": {
+    "file": "chunks/paths.js"
   },
   "_ssr.js": {
     "file": "chunks/ssr.js"
@@ -40,8 +45,9 @@
   "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
     "file": "index.js",
     "imports": [
-      "_internal.js",
-      "_index.js"
+      "_paths.js",
+      "_index.js",
+      "_internal.js"
     ],
     "isEntry": true,
     "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js"
@@ -58,7 +64,8 @@
     "file": "entries/pages/_layout.svelte.js",
     "imports": [
       "_ssr.js",
-      "_stores.js"
+      "_stores.js",
+      "_paths.js"
     ],
     "isEntry": true,
     "src": "src/routes/+layout.svelte"
@@ -70,6 +77,7 @@
     "file": "entries/pages/_page.svelte.js",
     "imports": [
       "_ssr.js",
+      "_paths.js",
       "_index.js"
     ],
     "isEntry": true,

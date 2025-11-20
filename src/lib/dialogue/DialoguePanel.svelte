@@ -1,14 +1,18 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import { base } from "$app/paths";
 
   export let visible = false;
   export let character = "Wolfie";
-  export let portrait = "/fytrup-alpha2/characters/wolfie_neutral.png";
+  export let portrait = "/characters/wolfie_neutral.png";   // raw path, no prefix
   export let title = "";
   export let text = "";
   export let poiId = null;
 
   const dispatch = createEventDispatcher();
+
+  // Apply GitHub Pages base prefix safely
+  $: portraitSrc = `${base}${portrait}`;
 
   function close() {
     dispatch("close", { poiId });
@@ -84,7 +88,7 @@
 
 <div class="panel {visible ? 'visible' : ''}">
   <div class="header">
-    <img class="portrait" src={portrait} alt={character} />
+    <img class="portrait" src={portraitSrc} alt={character} />
     <div class="character">{character}</div>
   </div>
 
