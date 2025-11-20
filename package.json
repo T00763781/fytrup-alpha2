@@ -1,0 +1,20 @@
+{
+  "name": "fytrup-alpha2",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "3.0.3",
+    "@sveltejs/kit": "2.0.6",
+    "svelte": "4.2.2",
+    "vite": "5.0.8"
+  },
+  "dependencies": {
+    "@mlc-ai/web-llm": "^0.2.79",
+    "leaflet": "^1.9.4"
+  }
+}
