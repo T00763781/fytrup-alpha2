@@ -1,16 +1,15 @@
 import adapter from '@sveltejs/adapter-static';
 
-const dev = process.argv.includes('dev');
-
-export default {
+const config = {
   kit: {
     adapter: adapter(),
     paths: {
-      base: dev ? '' : '/fytrup-alpha2'
+      base: process.env.NODE_ENV === 'production' ? '/fytrup-alpha2' : ''
     },
-    appDir: 'app',
     prerender: {
-      handleHttpError: 'ignore'
+      handleHttpError: 'warn'
     }
   }
 };
+
+export default config;
