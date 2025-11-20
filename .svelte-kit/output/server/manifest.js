@@ -5,12 +5,12 @@ function __memo(fn) {
 }
 
 return {
-	appDir: "_app",
-	appPath: "_app",
-	assets: new Set(["manifest.json","splash.gif","service-worker.js","characters/wolfie_neutral.png","characters/wolfie_confused.png","characters/wolfie_happy.png","icons/marker-512.png","icons/marker.svg","icons/marker-64.png","icons/marker-128.png","icons/marker-256.png"]),
-	mimeTypes: {".json":"application/json",".gif":"image/gif",".js":"text/javascript",".png":"image/png",".svg":"image/svg+xml"},
+	appDir: "app",
+	appPath: "fytrup-alpha2/app",
+	assets: new Set(["manifest.json","service-worker.js","splash.gif","characters/wolfie_confused.png","characters/wolfie_happy.png","characters/wolfie_neutral.png","icons/marker.svg","icons/Map_Selected.png","icons/Profile.png","icons/Profile_selected.png","icons/Camera.png","icons/Camera_selected.png","icons/Map.png","icons/marker_completed.png","icons/marker_unseen.png","icons/marker_visited.png"]),
+	mimeTypes: {".json":"application/json",".js":"text/javascript",".gif":"image/gif",".png":"image/png",".svg":"image/svg+xml"},
 	_: {
-		client: {"start":"_app/immutable/entry/start.H39noPu4.js","app":"_app/immutable/entry/app.n1LG64jF.js","imports":["_app/immutable/entry/start.H39noPu4.js","_app/immutable/chunks/scheduler.oYtYXvQl.js","_app/immutable/chunks/singletons.CY3vAGaw.js","_app/immutable/chunks/index.Drqx4g8S.js","_app/immutable/entry/app.n1LG64jF.js","_app/immutable/chunks/preload-helper.BQ24v_F8.js","_app/immutable/chunks/scheduler.oYtYXvQl.js","_app/immutable/chunks/index.D-JCthls.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
+		client: {"start":"app/immutable/entry/start.BqMP95ix.js","app":"app/immutable/entry/app.gPuAYxCb.js","imports":["app/immutable/entry/start.BqMP95ix.js","app/immutable/chunks/scheduler.D4wV5lJR.js","app/immutable/chunks/singletons.CFYI3nnn.js","app/immutable/chunks/index.C9EuUJDl.js","app/immutable/entry/app.gPuAYxCb.js","app/immutable/chunks/preload-helper.BQ24v_F8.js","app/immutable/chunks/scheduler.D4wV5lJR.js","app/immutable/chunks/index.D5HGq5EU.js"],"stylesheets":[],"fonts":[],"uses_env_dynamic_public":false},
 		nodes: [
 			__memo(() => import('./nodes/0.js')),
 			__memo(() => import('./nodes/1.js'))

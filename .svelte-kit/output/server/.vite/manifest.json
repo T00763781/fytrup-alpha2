@@ -22,10 +22,17 @@
   "_ssr.js": {
     "file": "chunks/ssr.js"
   },
+  "_stores.js": {
+    "file": "chunks/stores.js",
+    "imports": [
+      "_ssr.js"
+    ]
+  },
   "node_modules/@sveltejs/kit/src/runtime/components/error.svelte": {
     "file": "entries/fallbacks/error.svelte.js",
     "imports": [
-      "_ssr.js"
+      "_ssr.js",
+      "_stores.js"
     ],
     "isEntry": true,
     "src": "node_modules/@sveltejs/kit/src/runtime/components/error.svelte"
@@ -46,18 +53,19 @@
   },
   "src/routes/+layout.svelte": {
     "css": [
-      "_app/immutable/assets/_layout.BfBCn_h7.css"
+      "app/immutable/assets/_layout.D3z7DYCW.css"
     ],
     "file": "entries/pages/_layout.svelte.js",
     "imports": [
-      "_ssr.js"
+      "_ssr.js",
+      "_stores.js"
     ],
     "isEntry": true,
     "src": "src/routes/+layout.svelte"
   },
   "src/routes/+page.svelte": {
     "css": [
-      "_app/immutable/assets/_page.ncAhviyA.css"
+      "app/immutable/assets/_page.DBTa-6jK.css"
     ],
     "file": "entries/pages/_page.svelte.js",
     "imports": [
@@ -67,20 +75,28 @@
     "isEntry": true,
     "src": "src/routes/+page.svelte"
   },
-  "src/routes/onboarding/+page.svelte": {
-    "css": [
-      "_app/immutable/assets/_page.j5xGGGBR.css"
-    ],
-    "file": "entries/pages/onboarding/_page.svelte.js",
+  "src/routes/_onboarding_disabled/+page.svelte": {
+    "file": "entries/pages/_onboarding_disabled/_page.svelte.js",
     "imports": [
       "_ssr.js"
     ],
     "isEntry": true,
-    "src": "src/routes/onboarding/+page.svelte"
+    "src": "src/routes/_onboarding_disabled/+page.svelte"
+  },
+  "src/routes/camera/+page.svelte": {
+    "css": [
+      "app/immutable/assets/_page.BGbSAMzn.css"
+    ],
+    "file": "entries/pages/camera/_page.svelte.js",
+    "imports": [
+      "_ssr.js"
+    ],
+    "isEntry": true,
+    "src": "src/routes/camera/+page.svelte"
   },
   "src/routes/profile/+page.svelte": {
     "css": [
-      "_app/immutable/assets/_page.DiPqihwW.css"
+      "app/immutable/assets/_page.DiPqihwW.css"
     ],
     "file": "entries/pages/profile/_page.svelte.js",
     "imports": [
